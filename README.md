@@ -1,4 +1,4 @@
-## Managed-Dependencies Requirement Rule for `maven-enforcer-plugin`
+### Managed-Dependency Requirement for maven-enforcer-plugin
 
 This is a rule implementation for the Apache Maven Enforcer Plugin, version 1.0+. It simply checks that all dependencies in your POM have versions that were specified in a `<dependencyManagement>` section.
   
