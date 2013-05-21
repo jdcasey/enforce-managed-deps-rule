@@ -56,3 +56,7 @@ If this is enabled, the rule will not only check the dependencies in the main bo
 #### `failOnViolation`
 
 If this is disabled, the rule will only print a warning when it comes across a dependency with a locally-specified version. By default, it is enabled...meaning it will actually fail the build if it finds a non-conforming dependency declaration.
+
+### Resources
+
+- [Maven-generated project site](http://jdcasey.github.io/enforce-managed-deps-rule/)
