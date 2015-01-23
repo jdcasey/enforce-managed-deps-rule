@@ -3,6 +3,7 @@ package org.commonjava.maven.enforcer.rule;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.maven.enforcer.rule.api.EnforcerRule;
 import org.apache.maven.enforcer.rule.api.EnforcerRuleException;
@@ -21,6 +22,8 @@ public class EnforceManagedDepsRule
     private boolean checkProfiles = true;
 
     private boolean failOnViolation = true;
+
+    private String[] regexIgnored = null;
 
     @Override
     public void execute( final EnforcerRuleHelper helper )
@@ -101,12 +104,26 @@ public class EnforceManagedDepsRule
         {
             for ( final Dependency dependency : dependencies )
             {
-                if ( dependency.getVersion() != null )
+                if ( ! checkRegex( dependency) && dependency.getVersion() != null )
                 {
                     failed.add( dependency );
                 }
             }
         }
+    }
+
+    private boolean checkRegex (Dependency dependency)
+    {
+        boolean result = false;
+
+        for ( String r : regexIgnored)
+        {
+            Pattern p = Pattern.compile(r);
+            if (p.matcher(dependency.getGroupId()).find() || p.matcher(dependency.getArtifactId()).find()) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**
@@ -169,4 +186,10 @@ public class EnforceManagedDepsRule
     {
         this.failOnViolation = failOnViolation;
     }
+
+    public void setRegexIgnored(String[] regexIgnored) {
+        this.regexIgnored = regexIgnored;
+    }
+
+
 }
