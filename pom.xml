@@ -4,7 +4,7 @@
   
   <groupId>org.commonjava.maven.enforcer</groupId>
   <artifactId>enforce-managed-deps-rule</artifactId>
-  <version>1.3-SNAPSHOT</version>
+  <version>1.3</version>
   
   <name>Enforcer :: Require Management of Dependencies</name>
   <description>Requires that all dependencies use dependencyManagement for version.</description>
