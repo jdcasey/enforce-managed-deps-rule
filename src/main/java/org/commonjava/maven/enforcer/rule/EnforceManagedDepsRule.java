@@ -116,11 +116,14 @@ public class EnforceManagedDepsRule
     {
         boolean result = false;
 
-        for ( String r : regexIgnored)
-        {
-            Pattern p = Pattern.compile(r);
-            if (p.matcher(dependency.getGroupId()).find() || p.matcher(dependency.getArtifactId()).find()) {
-                result = true;
+        if(regexIgnored != null){
+            for ( String r : regexIgnored)
+            {
+                Pattern p = Pattern.compile(r);
+                if (p.matcher(dependency.getGroupId()).find() || p.matcher(dependency.getArtifactId()).find()) {
+                    result = true;
+                    break;
+                }
             }
         }
         return result;
